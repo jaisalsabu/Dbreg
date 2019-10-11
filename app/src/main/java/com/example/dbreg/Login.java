@@ -3,6 +3,7 @@ package com.example.dbreg;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -27,14 +28,19 @@ import java.util.Map;
 public class Login extends AppCompatActivity {
     EditText a10,a11;
     Button btm,bto;
+   // SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+       // sharedPreferences=getSharedPreferences("asd",MODE_PRIVATE);
         a10=findViewById(R.id.editText2);
         a11=findViewById(R.id.editText4);
         btm=findViewById(R.id.button2);
         bto=findViewById(R.id.button3);
+        //SharedPreferences.Editor editor=sharedPreferences.edit();
+       // editor.putString("name",a10.getText().toString());
+        //editor.apply();
         btm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,6 +55,8 @@ public class Login extends AppCompatActivity {
 //If we are getting success from server
 
                                     Toast.makeText(Login.this, response, Toast.LENGTH_LONG).show();
+                                    //Intent iso= new Intent(getApplicationContext(),HOME_page.class);
+                                    //startActivity(iso);
                                     try {
                                         JSONArray jsonArray=new JSONArray(response);
                                         for(int i=0;i<jsonArray.length();i++){
@@ -80,7 +88,9 @@ public class Login extends AppCompatActivity {
                             return params;
                         }
                     };
-
+                   Intent iso=new Intent(getApplicationContext(),HOME_page.class);
+                    iso.putExtra("name",a10.getText().toString());
+                   startActivity(iso);
 //Adding the string request to the queue
                     RequestQueue requestQueue = Volley.newRequestQueue(Login.this);
                     requestQueue.add(stringRequest);
