@@ -75,8 +75,7 @@ public class MainActivity extends AppCompatActivity {
 //Adding parameters to request
 
 params.put("name",a1.getText().toString());
-params.put("email_id",a2.getText().toString());
-params.put("password",a3.getText().toString());
+
 //returning parameter
                             return params;
                         }
